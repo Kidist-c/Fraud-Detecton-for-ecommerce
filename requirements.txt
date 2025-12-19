@@ -1,0 +1,9 @@
+# Core data & ML
+numpy
+pandas
+scikit-learn
+joblib
+
+# Visualization (notebooks)
+matplotlib
+seaborn
