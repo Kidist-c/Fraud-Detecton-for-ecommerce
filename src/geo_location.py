@@ -31,9 +31,9 @@ class IPToCountryMapper:
         Convert IP column from float to int
         """
         df=df.copy()
-        df[ip_column].astype(int)
+        df[ip_column]=df[ip_column].astype(int)
         return df
-    def map_ip_to_country(self,df:pd.DataFrame,ip_column:str='ip_addres',country_column:str='country'):
+    def map_ip_to_country(self,df:pd.DataFrame,ip_column:str='ip_address',country_column:str='country'):
         """
         Map Ip address in df to countries using th Ip range table
         Returns 
