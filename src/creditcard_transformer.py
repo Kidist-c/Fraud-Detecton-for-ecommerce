@@ -11,7 +11,7 @@ class CreditCardDataTransformer:
     Scaling + class imbalance handling for credit card fraud data
     """
 
-    def init(
+    def __init__(
         self,
         amount_col='Amount',
         time_col='Time',
