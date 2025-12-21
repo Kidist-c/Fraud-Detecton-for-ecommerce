@@ -11,7 +11,7 @@ class TimeBehaviorFeatures:
         self.user_id_col=user_id_col
         self.purchase_time_col=purchase_time_col
         self.signup_time_col=signup_time_col
-    def create_time_features(self,df:pd.DataFrame)->pd.dataFrame:
+    def create_time_features(self,df:pd.DataFrame)->pd.DataFrame:
         """
         create basic time-based features 
         from purchase time and signup_time
@@ -21,7 +21,7 @@ class TimeBehaviorFeatures:
         df['day_of_week']=df[self.purchase_time_col].dt.dayofweek
         df['time_since_signup']=(df[self.purchase_time_col]-df[self.signup_time_col]).dt.total_seconds()
         return df
-    def transaction_volocity(self,df:pd.DataFrame)->pd.DataFrame:
+    def transaction_velocity(self,df:pd.DataFrame)->pd.DataFrame:
         """
         compute number of transaction per user
         """
@@ -35,4 +35,5 @@ class TimeBehaviorFeatures:
         Apply all time and behavior features
         """
         df=self.create_time_features(df)
-        df=self.transaction_volocity(df)
+        df=self.transaction_velocity(df)
+        return df
