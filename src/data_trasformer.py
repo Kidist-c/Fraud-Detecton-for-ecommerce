@@ -35,7 +35,7 @@ class FraudDataTransformer:
         """
         self.preprocessor=ColumnTransformer(
             transformers=[('num',self.scaler,self.numerical_features),
-                          ("cat", OneHotEncoder(handle_unknown="ignore"), self.categorical_features)])
+                          ("cat", OneHotEncoder(handle_unknown="ignore",sparse_output=False), self.categorical_features)])
         
     def build_pipeline(self):
         """
