@@ -47,6 +47,11 @@ class FraudDataTransformer:
                 ("smote",self.sampler)
             ]
         )
+    #--------------------------------------------
+    # Test Transform
+    #-------------------------------------------
+    def transform_test(self,df:pd.DataFrame):
+        X=df.drop
     def fit_resample(self,df:pd.DataFrame):
         """
         Fit Preprocessing + Fit preprocessing + resampling on TRAINING data only
