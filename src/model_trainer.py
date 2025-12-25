@@ -46,24 +46,17 @@ class FraudModelTrainer:
     def tune_random_forest(self,x_train,y_train,n_iter=20):
         rf=RandomForestClassifier(random_state=self.random_state,n_jobs=-1)
         param_dist = {
-            "n_estimators": [100, 200, 300, 500],
-            "max_depth": [None, 5, 10, 20],
-            "min_samples_split": [2, 5, 10],
-            "min_samples_leaf": [1, 2, 4],
-            "max_features": ["sqrt", "log2"]
+            "n_estimators": [300, 500],
+            "max_depth": [5,20]
         } # define different prarmeters of random forest that can be tuned 
         
-        cv = StratifiedKFold(
-            n_splits=5,
-            shuffle=True,
-            random_state=self.random_state
-        )
+       
         search=RandomizedSearchCV(
             estimator=rf,
             param_distributions=param_dist,
             n_iter=n_iter,
             scoring="average_precision",
-            cv=cv,
+            cv=2,
             verbose=1,
             n_jobs=-1,
             random_state=self.random_state
@@ -79,7 +72,7 @@ class FraudModelTrainer:
         y_pred=model.predict(x_test) # predict the model on test set 
         y_proba=model.predict_proba(x_test)[:,1] # predict the probabilities
         auc_pr=average_precision_score(y_test,y_proba)
-        f1=f1_score(y_test,y_proba)
+        f1=f1_score(y_test,y_pred)
         cm=confusion_matrix(y_test,y_pred)
         self.results.append({
             "Model":model_name,
