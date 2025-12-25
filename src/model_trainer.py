@@ -15,7 +15,7 @@ class FraudModelTrainer:
     Works for credit card & e-commerce fraud datasets
     """
 
-    def init(self, random_state=42):
+    def __init__(self, random_state=42):
         # Set random state for reproducibility
         self.random_state = random_state
         
