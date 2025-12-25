@@ -35,7 +35,7 @@ class FraudDataTransformer:
         """
         self.preprocessor=ColumnTransformer(
             transformers=[('num',self.scaler,self.numerical_features),
-                          ("cat", OneHotEncoder(handle_unknown="ignore"), self.categorical_features)])
+                          ("cat", OneHotEncoder(handle_unknown="ignore",sparse_output=False), self.categorical_features)])
         
     def build_pipeline(self):
         """
@@ -47,6 +47,11 @@ class FraudDataTransformer:
                 ("smote",self.sampler)
             ]
         )
+    #--------------------------------------------
+    # Test Transform
+    #-------------------------------------------
+    def transform_test(self,df:pd.DataFrame):
+        X=df.drop
     def fit_resample(self,df:pd.DataFrame):
         """
         Fit Preprocessing + Fit preprocessing + resampling on TRAINING data only

@@ -27,12 +27,12 @@ class CreditCardDataTransformer:
         self.pipeline = None
 
     def build_preprocessor(self):
-        self.preprocessor = ColumnTransformer(
-            transformers=[
-                ('scale', StandardScaler(), [self.amount_col, self.time_col])
+         self.preprocessor = ColumnTransformer(
+         transformers=[
+        ('scale', StandardScaler(), [self.amount_col, self.time_col])
             ],
-            remainder='passthrough'  # keep V1–V28
-        )
+          remainder='passthrough'  # keep V1–V28
+          )
 
     def build_pipeline(self):
         self.pipeline = ImbPipeline(
