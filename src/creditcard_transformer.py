@@ -41,6 +41,17 @@ class CreditCardDataTransformer:
                 ('smote', self.sampler)
             ]
         )
+    #------------------------------------------
+    # get feature names
+    #-----------------------------------------
+    def get_feature_names(self,original_cols):
+        """
+        Return feature names after preprocessing
+        """
+        scaled_features=[self.amount_col,self.time_col]
+        remaining_features=[col for col in original_cols if col not in scaled_features and col !=self.target_col]
+        return scaled_features + remaining_features
+
 
     def fit_resample(self, df: pd.DataFrame):
         X = df.drop(columns=[self.target_col])
