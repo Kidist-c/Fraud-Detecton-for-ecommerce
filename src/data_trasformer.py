@@ -63,6 +63,21 @@ class FraudDataTransformer:
         self.build_pipeline()
         X_resampled, y_resampled = self.pipeline.fit_resample(X, y)
         return X_resampled, y_resampled
+    #--------------------------------------------------------
+    # get Feature Names for Shap
+    #--------------------------------------------------------
+    def get_feature_names(self):
+        """
+        Extract feature names after preprocessing 
+        """
+        feature_names=[]
+        # numerical features(unchanges names)
+        feature_names.extend(self.numerical_features)
+        # catagorical features(one hot encoded)
+        ohe=self.preprocessor.named_transformers_['cat']
+        cat_feature_names=ohe.get_feature_names_out(self.categorical_features)
+        feature_names.extend(cat_feature_names)
+        return feature_names
     def get_class_distribution(self, Y):
         """
         Return class distribution as percentages
